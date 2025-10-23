@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Как работает Vue</title>
+        <link rel="stylesheet" href="theme.css"/>
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container pt-5" id="app" v-cloak>
+            <div class="card center">
+                <div v-html="myHTML"></div>
+<!--                <h2 v-text="title"></h2>-->
+<!--                <h2 v-once> {{ title }}</h2>-->
+<!--                <h2 v-pre> {{ title }} </h2>-->
+
+<!--                <button-->
+<!--                        class="btn"-->
+<!--                        @click="title='Теперь я другое название'">-->
+<!--                    Click me-->
+<!--                </button>-->
+
+                <div class="form-control">
+                    <input type="text" @keyup.shift.enter.exact="addItem" ref="myInput">
+                </div>
+
+
+                <ul class="list" v-if="items.length">
+                    <li
+                            class="list-item"
+                            v-for="(item, index) in items"
+                            @click.right.prevent="remove(index), log(item)"
+                            :key="item"
+                    >
+                        <strong>{{item}}</strong>&nbsp;
+                        <label>
+                            <input type="text" @click.stop>
+                        </label>
+                    </li>
+
+<!--                    <li class="list-item" v-for="(value, key) in person">-->
+<!--                        <strong>{{key}}:</strong> {{value}}-->
+<!--                    </li>-->
+                </ul>
+
+                <h3 v-show="items.length === 0">List is empty</h3>
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
